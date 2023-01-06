@@ -68,6 +68,6 @@ export default function (props: IChatMessageProps) {
 }
 
 interface IChatMessageProps {
-    languague: string,
+    languague?: string,
     text: string
 };

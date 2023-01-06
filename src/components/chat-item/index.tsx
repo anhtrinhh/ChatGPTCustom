@@ -1,19 +1,21 @@
 import React from "react";
+import { MessageType } from "../../contexts/modal.context";
 import CodeMessage from "../code-message";
 import TextMessage from "../text-message";
 import "./style.css"
 
 export default function (props: IChatItemProps) {
-    var str = `private static bool CheckEntityHasInDb(OracleConnection connection, string clientCode, DateTime date)
-{
-  using (var command = connection.CreateCommand())
-  {
-    command.CommandText = "SELECT COUNT(*) FROM table WHERE client_code = :clientCode AND date = :date";
-    command.Parameters.Add("clientCode", OracleDbType.Varchar2).Value = clientCode;
-    command.Parameters.Add("date", OracleDbType.Date).Value = date;
-    return (int)command.ExecuteScalar() > 0;
-  }
-}`;
+    const messageComponents : Array<JSX.Element>  = [];
+    props.messagesData.forEach((data, index) => {
+        switch(data.type) {
+            case MessageType.code:
+                messageComponents.push(<CodeMessage key={index} languague={data.languague} text={data.text} />)
+                break;
+            case MessageType.text:
+                messageComponents.push(<TextMessage key={index} text={data.text} />)
+                break;
+        }
+    })
     return (
         <div className={"chat-item" + (props.isOwner ? " owner" : "")}>
             <div className="chat-item-wrapper">
@@ -21,8 +23,7 @@ export default function (props: IChatItemProps) {
                     <img src={props.avatar} />
                 </div>
                 <div className="chat-item-messages">
-                    <TextMessage text="Hello Oke Oke" />
-                    <CodeMessage languague="csharp" text={str} />
+                    {messageComponents}
                 </div>
             </div>
         </div>
@@ -31,5 +32,12 @@ export default function (props: IChatItemProps) {
 
 interface IChatItemProps {
     isOwner: boolean,
-    avatar: string
+    avatar: string,
+    messagesData: Array<IMessageProps>
+}
+
+interface IMessageProps {
+    type: MessageType,
+    languague?: string,
+    text: string
 }
