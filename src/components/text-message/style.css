@@ -1,0 +1,11 @@
+.text-message {
+    max-width: none;
+    width: 100%;
+    word-wrap: break-word;
+    color: #d1d5db;
+}
+
+.text-message p {
+    font-size: 0.875rem;
+    padding: 0.25rem 0;
+}

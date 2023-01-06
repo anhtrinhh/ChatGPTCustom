@@ -1,0 +1,27 @@
+.code-message {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.code-messsage-copy {
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    font-size: .75rem;
+    line-height: 1rem;
+    background-color: rgb(40, 40, 40);
+}
+
+.code-messsage-copy > button {
+    display: flex;
+    margin-left: auto;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: rgb(217,217,227);
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    outline: none;
+    align-items: center;
+}
