@@ -1,4 +1,4 @@
-import React, { FormEvent, KeyboardEvent, useEffect, useRef } from "react";
+import React, { FocusEventHandler, FormEvent, FormEventHandler, KeyboardEvent, useEffect, useRef } from "react";
 import "./style.css";
 
 export default function (props: IMessagePaneProps) {
@@ -66,6 +66,8 @@ export default function (props: IMessagePaneProps) {
                 style={{ height: "1rem" }}
                 ref={textareaRef}
                 defaultValue={props.defaultMessage}
+                onInput={props.onInput}
+                onFocus={props.onFocus}
             ></textarea>
             <button>
                 <svg viewBox="0 0 24 24">
@@ -78,7 +80,9 @@ export default function (props: IMessagePaneProps) {
 
 interface IMessagePaneProps {
     onSend?: OnSendHandler,
-    defaultMessage?: string
+    defaultMessage?: string,
+    onInput?: FormEventHandler,
+    onFocus?: FocusEventHandler
 }
 
 type OnSendHandler = { onSend(message: string): void }["onSend"];

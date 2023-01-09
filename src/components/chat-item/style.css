@@ -1,11 +1,11 @@
 .chat-item {
     width: 100%;
     padding: 1.5rem 0;
-    background-color: rgb(50, 50, 50)
+    background-color: rgb(23, 27, 34);
 }
 
 .chat-item.owner {
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(13, 17, 23);
 }
 
 .chat-item-wrapper {
